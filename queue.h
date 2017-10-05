@@ -1,16 +1,13 @@
 #include <iostream>
 
-struct node
-{
+struct node {
     int data;
     node* next;
 };
 
-class Queue
-{
+class Queue {
     private:
         node* head;
-
     public:
         Queue();
         int dequeue();
