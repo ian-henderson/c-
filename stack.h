@@ -1,16 +1,16 @@
-#ifndef QUEUE_H
-#define QUEUE_H
+#ifndef STACK_H
+#define STACK_H
 
 #include <iostream>
 #include "node.h"
 
-class Queue {
+class Stack {
         private:
                 node* head;
         public:
-                Queue();
-                int enqueue(int);
-                int dequeue();
+                Stack();
+                int push(int);
+                int pop();
                 bool is_empty();
                 int peek();
                 std::string print();

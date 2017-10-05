@@ -1,26 +1,20 @@
-#include "queue.h"
+#include "stack.h"
 
-Queue::Queue()
+Stack::Stack()
 {
         head = NULL;
 }
 
-int Queue::enqueue(int data)
+int Stack::push(int data)
 {
-        node* cursor = head;
-        if (head) {
-                while (cursor->next) cursor = cursor->next;
-                cursor->next = new node;
-                cursor = cursor->next;
-        } else {
-                cursor = head = new node;
-        }
+        node* cursor = new node;
         cursor->data = data;
-        cursor->next = NULL;
-        return cursor->data;
+        cursor->next = head;
+        head = cursor;
+        return head->data;
 }
 
-int Queue::dequeue()
+int Stack::pop()
 {
         if (head) {
                 int data = head->data;
@@ -29,21 +23,21 @@ int Queue::dequeue()
                 delete old_head;
                 return data;
         }
-        throw "Nothing in queue.";
+        throw "Nothing in stack.";
 }
 
-bool Queue::is_empty()
+bool Stack::is_empty()
 {
         return head ? false : true;
 }
 
-int Queue::peek()
+int Stack::peek()
 {
         if (head) return head->data;
-        throw "Nothing in queue.";
+        throw "Nothing in stack.";
 }
 
-std::string Queue::print()
+std::string Stack::print()
 {
         node* cursor = head;
         std::string output = "";
