@@ -31,18 +31,17 @@ int main(int argc, char* argv[])
         for (int i = 0; fscanf(fp, "%d %d", &v[i], &w[i]) != EOF; i++);
         fclose(fp);
 
+        // Intializes the table.
         int m[n][W];
         for (int j = 0; j < W; j++) m[0][j] = 0;
 
-        for (int i = 1; i < n; i++) {
-                for (int j = 0; j < W; j++) {
-                        if (w[i] > j) {
+        // Dynamic Program that will run in O(nW) time and O(nW) space.
+        for (int i = 1; i < n; i++)
+                for (int j = 0; j < W; j++)
+                        if (w[i] > j)
                                 m[i][j] = m[i-1][j];
-                        } else {
+                        else
                                 m[i][j] = MAX(m[i-1][j], m[i-1][j-w[i]] + v[i]);
-                        }
-                }
-        }
 
         printf("The max value your knapsack can carry is %d.\n", m[n-1][W-1]);
 
