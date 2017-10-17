@@ -22,9 +22,9 @@
 
 int main(int argc, char* argv[])
 {
-        // Reads data into variables n, W, w[], and v[] from knapsack-data.
+        // Reads data into variables n, W, w[], and v[] from data.
         FILE* fp;
-        fp = fopen("knapsack-data", "r");
+        fp = fopen("data", "r");
         int n, W;
         fscanf(fp, "%d %d", &n, &W);
         int w[n], v[n];
