@@ -20,11 +20,10 @@
  * value-n weight-n
  */
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
         // Reads data into variables n, W, w[], and v[] from data.
-        FILE* fp;
-        fp = fopen("data", "r");
+        FILE *fp = fopen("data", "r");
         if (fp == NULL) {
                 fprintf(stderr, "Can\'t open data file!\n");
                 return 1;
@@ -54,7 +53,7 @@ int main(int argc, char* argv[])
                 m[0][j] = 0;
         }
 
-        // Dynamic Program that will run in O(nW) time and O(nW) space.
+        // Dynamic programming algorithm that runs in O(nW) time and uses O(nW) space.
         for (int i = 1; i < n; i++) {
                 for (int j = 0; j < W; j++) {
                         if (w[i] > j) {
