@@ -5,13 +5,15 @@ Stack::Stack()
         head = NULL;
 }
 
-int Stack::push(int data)
+bool Stack::empty()
 {
-        node* cursor = new node;
-        cursor->data = data;
-        cursor->next = head;
-        head = cursor;
-        return head->data;
+        return head ? false : true;
+}
+
+int Stack::peek()
+{
+        if (head) return head->data;
+        throw "Nothing in stack.";
 }
 
 int Stack::pop()
@@ -26,17 +28,6 @@ int Stack::pop()
         throw "Nothing in stack.";
 }
 
-bool Stack::is_empty()
-{
-        return head ? false : true;
-}
-
-int Stack::peek()
-{
-        if (head) return head->data;
-        throw "Nothing in stack.";
-}
-
 std::string Stack::print()
 {
         node* cursor = head;
@@ -47,4 +38,13 @@ std::string Stack::print()
                 cursor = cursor->next;
         }
         return output;
+}
+
+int Stack::push(int data)
+{
+        node* cursor = new node;
+        cursor->data = data;
+        cursor->next = head;
+        head = cursor;
+        return head->data;
 }

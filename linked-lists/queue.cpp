@@ -5,6 +5,23 @@ Queue::Queue()
         head = NULL;
 }
 
+int Queue::dequeue()
+{
+        if (head) {
+                int data = head->data;
+                node *old_head = head;
+                head = head->next;
+                delete old_head;
+                return data;
+        }
+        throw "Nothing in queue.";
+}
+
+bool Queue::empty()
+{
+        return head ? false : true;
+}
+
 int Queue::enqueue(int data)
 {
         node *cursor = head;
@@ -18,6 +35,38 @@ int Queue::enqueue(int data)
         cursor->data = data;
         cursor->next = NULL;
         return cursor->data;
+}
+
+int Queue::length()
+{
+        if (head) {
+                node *cursor = head;
+                int length = 1;
+                while (cursor->next) {
+                        cursor = cursor->next;
+                        length++;
+                }
+                return length;
+        }
+        return 0;
+}
+
+int Queue::peek()
+{
+        if (head) return head->data;
+        throw "Nothing in queue.";
+}
+
+std::string Queue::print()
+{
+        node *cursor = head;
+        std::string output = "";
+        while (cursor) {
+                output += std::to_string(cursor->data);
+                if (cursor->next) output += " ";
+                cursor = cursor->next;
+        }
+        return output;
 }
 
 int Queue::remove(int index)
@@ -38,53 +87,4 @@ int Queue::remove(int index)
                 return 0;
         }
         throw "Nothing in queue.";
-}
-
-int Queue::length()
-{
-        if (head) {
-                node *cursor = head;
-                int length = 1;
-                while (cursor->next) {
-                        cursor = cursor->next;
-                        length++;
-                }
-                return length;
-        }
-        return 0;
-}
-
-int Queue::dequeue()
-{
-        if (head) {
-                int data = head->data;
-                node *old_head = head;
-                head = head->next;
-                delete old_head;
-                return data;
-        }
-        throw "Nothing in queue.";
-}
-
-bool Queue::is_empty()
-{
-        return head ? false : true;
-}
-
-int Queue::peek()
-{
-        if (head) return head->data;
-        throw "Nothing in queue.";
-}
-
-std::string Queue::print()
-{
-        node *cursor = head;
-        std::string output = "";
-        while (cursor) {
-                output += std::to_string(cursor->data);
-                if (cursor->next) output += " ";
-                cursor = cursor->next;
-        }
-        return output;
 }

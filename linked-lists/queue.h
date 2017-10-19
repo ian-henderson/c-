@@ -6,16 +6,16 @@
 
 class Queue {
         private:
-                node* head;
+                node *head;
         public:
                 Queue();
-                int enqueue(int);
                 int dequeue();
-                int remove(int);
+                bool empty();
+                int enqueue(int);
                 int length();
-                bool is_empty();
                 int peek();
                 std::string print();
+                int remove(int);
 };
 
 #endif

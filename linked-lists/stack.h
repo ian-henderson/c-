@@ -6,14 +6,14 @@
 
 class Stack {
         private:
-                node* head;
+                node *head;
         public:
                 Stack();
-                int push(int);
-                int pop();
-                bool is_empty();
+                bool empty();
                 int peek();
+                int pop();
                 std::string print();
+                int push(int);
 };
 
 #endif
