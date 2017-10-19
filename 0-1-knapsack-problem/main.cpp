@@ -24,14 +24,12 @@ int max_knapsack_value(int n, int W, int v[], int w[])
 {
         int m[n][W];
         for (int i = 0; i < W; i++) m[0][i] = 0;
-
         for (int i = 1; i < n; i++)
                 for (int j = 0; j < W; j++)
                         if (w[i] > j)
                                 m[i][j] = m[i-1][j];
                         else
                                 m[i][j] = MAX(m[i-1][j], m[i-1][j-w[i]] + v[i]);
-
         return m[n-1][W-1];
 }
 
@@ -62,8 +60,8 @@ int main(int argc, char *argv[])
         }
         fclose(fp);
 
-        int val = max_knapsack_value(n, W, v, w);
-        printf("The max value your knapsack can carry is %d.\n", val);
+        int max = max_knapsack_value(n, W, v, w);
+        printf("The max value your knapsack can carry is %d.\n", max);
 
         return 0;
 }
