@@ -20,12 +20,27 @@
  * value-n weight-n
  */
 
+int max_knapsack_value(int n, int W, int v[], int w[])
+{
+        int m[n][W];
+        for (int i = 0; i < W; i++) m[0][i] = 0;
+
+        for (int i = 1; i < n; i++)
+                for (int j = 0; j < W; j++)
+                        if (w[i] > j)
+                                m[i][j] = m[i-1][j];
+                        else
+                                m[i][j] = MAX(m[i-1][j], m[i-1][j-w[i]] + v[i]);
+
+        return m[n-1][W-1];
+}
+
 int main(int argc, char *argv[])
 {
         // Reads data into variables n, W, w[], and v[] from data.
         FILE *fp = fopen("data", "r");
         if (fp == NULL) {
-                fprintf(stderr, "Can\'t open data file!\n");
+                fprintf(stderr, "Could not open data file!\n");
                 return 1;
         }
         int n, W;
@@ -37,7 +52,7 @@ int main(int argc, char *argv[])
         int w[n], v[n];
         for (int i = 0; i < n; i++) {
                 if (fscanf(fp, "%d %d", &v[i], &w[i]) == EOF) {
-                        fprintf(stderr, "More than %d items in input file.\n", n);
+                        fprintf(stderr, "Expected %d values but only received %d.\n", n, i);
                         return 1;
                 }
                 if (v[i] < 0 || w[i] < 0) {
@@ -47,24 +62,8 @@ int main(int argc, char *argv[])
         }
         fclose(fp);
 
-        // Intializes the table.
-        int m[n][W];
-        for (int j = 0; j < W; j++) {
-                m[0][j] = 0;
-        }
-
-        // Dynamic programming algorithm that runs in O(nW) time and uses O(nW) space.
-        for (int i = 1; i < n; i++) {
-                for (int j = 0; j < W; j++) {
-                        if (w[i] > j) {
-                                m[i][j] = m[i-1][j];
-                        } else {
-                                m[i][j] = MAX(m[i-1][j], m[i-1][j-w[i]] + v[i]);
-                        }
-                }
-        }
-
-        printf("The max value your knapsack can carry is %d.\n", m[n-1][W-1]);
+        int val = max_knapsack_value(n, W, v, w);
+        printf("The max value your knapsack can carry is %d.\n", val);
 
         return 0;
 }
