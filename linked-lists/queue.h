@@ -11,6 +11,8 @@ class Queue {
                 Queue();
                 int enqueue(int);
                 int dequeue();
+                int remove(int);
+                int length();
                 bool is_empty();
                 int peek();
                 std::string print();
