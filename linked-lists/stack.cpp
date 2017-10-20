@@ -20,7 +20,7 @@ int Stack::pop()
 {
         if (head) {
                 int data = head->data;
-                node* old_head = head;
+                node *old_head = head;
                 head = head->next;
                 delete old_head;
                 return data;
@@ -30,7 +30,7 @@ int Stack::pop()
 
 std::string Stack::print()
 {
-        node* cursor = head;
+        node *cursor = head;
         std::string output = "";
         while (cursor) {
                 output += std::to_string(cursor->data);
@@ -42,7 +42,7 @@ std::string Stack::print()
 
 int Stack::push(int data)
 {
-        node* cursor = new node;
+        node *cursor = new node;
         cursor->data = data;
         cursor->next = head;
         head = cursor;

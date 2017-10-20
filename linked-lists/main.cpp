@@ -2,11 +2,7 @@
 #include "queue.h"
 #include "stack.h"
 
-using namespace std;
-
-/*
- * TODO: Write length and remove functions for stack lib
- */
+// TODO: Write length and remove functions for stack lib
 
 int main(int argc, char *argv[])
 {
