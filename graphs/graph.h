@@ -1,5 +1,5 @@
-#ifndef QUEUE_H
-#define QUEUE_H
+#ifndef GRAPH_H
+#define GRAPH_H
 
 class Graph {
         private:
